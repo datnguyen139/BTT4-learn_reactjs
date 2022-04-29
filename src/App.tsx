@@ -8,17 +8,23 @@ import Filter from './component/Footer.tsx';
 
 function App() {
   const [inputValue, setInputValue] = useState<string>("")
-  const [todos, setTodos] = useState([])
-  const [status, setStatus] = useState<string>("all")
-  const [filterstatus, setFilterStatus] = useState<object>([])
-
-  useEffect(() => {
-    getlocalstorage()
+  const [status, setStatus] = useState("all")
+  const [filterstatus, setFilterStatus] = useState([])
+  const [edit, setEdit] = useState<string>("")
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem("listTodo");
+    if (savedTodos) {
+      return JSON.parse(savedTodos);
+    } else {
+      return [];
+    }
   })
+  useEffect(() => {
+    localStorage.setItem("listTodo", JSON.stringify(todos));
+  }, [todos]);
 
   useEffect(() => {
     FilterStatus()
-    savetolocal()
   }, [todos, status])
 
   const FilterStatus = () => {
@@ -34,32 +40,24 @@ function App() {
     }
   }
 
-  const savetolocal = () => {
-      localStorage.setItem("listTodo", JSON.stringify(todos))
-  }
-  const getlocalstorage = () => {
-    if(localStorage.getItem("listTodo") === null) {
-      localStorage.setItem("listTodo",JSON.stringify([]))
-    } else {
-      let todolocal = JSON.parse(localStorage.getItem("listTodo"))
-      setTodos(todolocal)
-    }
-  }
   return (
     <div className='container'>
       <h1>TODOS</h1>
       <Form
+        inputValue={inputValue}
         setInputValue={setInputValue}
         todos={todos}
         setTodos={setTodos}
-        inputValue={inputValue}
       />
       <Todolist
         todos={todos}
         setTodos={setTodos}
+        setEdit = {setEdit}
         filterstatus={filterstatus}
       />
       <Filter
+        todos = {todos}
+        setTodos = {setTodos}
         setStatus={setStatus}
       />
     </div>

@@ -27,18 +27,18 @@ body {
   text-align: center;
 }
 
-#select {
+.selectall {
   position: relative;
-  top: -3.5rem;
-  right: 17rem;
+  top: 1.7rem;
+  left: -17.6rem;
   margin-top: 5px;
   border: none;
   background-color: white;
-  font-size: 40px;
+  font-size: 20px;
   color: black;
 }
 
-.container .top h1 {
+.container h1 {
   font-size: 100px;
   font-weight: 300;
   text-align: center;
@@ -48,9 +48,9 @@ body {
 }
 
 .newtask {
-  margin-left: 20px;
+  margin-left: 40px;
   border: none;
-  width: 93%;
+  width: 90%;
   padding: 5px;
   float: left;
   font-size: 20px;
@@ -65,12 +65,15 @@ body {
 .middle .to-do {
   background-color: #d9d9d9;
   position: relative;
-  width: 100%;
+  width: 90%;
   margin-bottom: 5px;
-  margin: 10px;
+  margin-left: 40px;
+  margin-top: 15px;
 }
 .to-do .checkbox {
-  border: none;
+  position: absolute;
+  top: 7px;
+  left: -30px;
   width: 20px;
   height: 20px;
   text-align: center;
@@ -78,7 +81,7 @@ body {
 
 .to-do .text {
   border: none;
-  margin-left: 40px;
+  margin-left: 3px;
   margin-right: 10px;
   margin-bottom: 2px;
   padding: 4px;
@@ -114,18 +117,19 @@ body {
 }
 
 .container .bottom {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 span {
-  margin-left: 10px;
-  margin-right: 80px;
+  margin-left: 37px;
+  margin-right: 58px;
 }
 
 ul {
   display: inline-flex;
   list-style-type: none;
   margin-right: 40px;
+  margin-bottom: 20px;
 }
 
 ul li {
@@ -148,9 +152,11 @@ a:hover {
 }
 
 .clearcompleted {
-  padding: 0.2rem;
+  font-size: 16px;
+  font-family: none;
+  padding: 0.4rem;
   border-radius: 10px;
-  margin-left: 10px;
+  margin-left: 33px;
   border: none;
   background-color: #d9d9d9;
 }
