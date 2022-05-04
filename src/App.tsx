@@ -6,13 +6,20 @@ import Form from './component/Form.tsx'
 import Todolist from './component/Todolist.tsx';
 import Filter from './component/Footer.tsx';
 
+interface Todos {
+  task: string
+  completed: boolean
+  id: number
+  checked: boolean
+}
+
 function App() {
   const [inputValue, setInputValue] = useState<string>("")
-  const [status, setStatus] = useState("all")
-  const [filterstatus, setFilterStatus] = useState([])
+  const [status, setStatus] = useState<string>("all")
+  const [filterstatus, setFilterStatus] = useState<Todos[]>([])
   const [edit, setEdit] = useState<string>("")
-  const [todos, setTodos] = useState(() => {
-    const savedTodos = localStorage.getItem("listTodo");
+  const [todos, setTodos] = useState<Todos[]>(() => {
+    const savedTodos: string = localStorage.getItem("listTodo");
     if (savedTodos) {
       return JSON.parse(savedTodos);
     } else {
