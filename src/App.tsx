@@ -1,25 +1,19 @@
 import './App.css';
 import { useEffect } from 'react';
 import {useState} from 'react';
-import React from 'react';
-import Form from './component/Form.tsx'
-import Todolist from './component/Todolist.tsx';
-import Filter from './component/Footer.tsx';
+import React, {FC} from 'react';
+import Form from './component/Form'
+import Todolist from './component/Todolist';
+import Filter from './component/Footer';
+import { Todos } from './component/interface';
 
-interface Todos {
-  task: string
-  completed: boolean
-  id: number
-  checked: boolean
-}
 
 function App() {
   const [inputValue, setInputValue] = useState<string>("")
   const [status, setStatus] = useState<string>("all")
   const [filterstatus, setFilterStatus] = useState<Todos[]>([])
-  const [edit, setEdit] = useState<string>("")
   const [todos, setTodos] = useState<Todos[]>(() => {
-    const savedTodos: string = localStorage.getItem("listTodo");
+    const savedTodos = localStorage.getItem("listTodo");
     if (savedTodos) {
       return JSON.parse(savedTodos);
     } else {
@@ -59,7 +53,6 @@ function App() {
       <Todolist
         todos={todos}
         setTodos={setTodos}
-        setEdit = {setEdit}
         filterstatus={filterstatus}
       />
       <Filter

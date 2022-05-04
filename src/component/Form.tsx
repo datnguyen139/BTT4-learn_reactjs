@@ -1,13 +1,15 @@
 import React from "react";
+import { Todos } from "./interface";
+import { TodosForm } from "./interface";
 
-const Form = ({setInputValue, setTodos, todos, inputValue}) => {
+const Form = ({setInputValue, setTodos, todos, inputValue}: TodosForm) => {
 
-  const inputHandler = (e) => {
-    setInputValue(e.target.value)
+  const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value)
   }
 
-  const handleSubmit= (event) => {
-    if(event.key !== "Enter"||event.target.value ===""){
+  const handleSubmit= (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if(event.key !== "Enter"|| inputValue === ""){
       return
     }
     event.preventDefault()
@@ -25,12 +27,12 @@ const Form = ({setInputValue, setTodos, todos, inputValue}) => {
 
   const CompletedAll = () => {
     const a = document.querySelectorAll(".checkbox")
-    const newtodos = todos.filter((todo) => todo.completed !== false)
+    const newtodos = todos.filter((todo: Todos) => todo.completed !== false)
     if (newtodos.length === todos.length && newtodos.length !== 0) {
       a.forEach((index => {
         index.removeAttribute("checked")
       }))
-      setTodos(todos.map((item) => {
+      setTodos(todos.map((item: Todos) => {
         return {
           ...item, completed: false, checked: false
         }
@@ -39,7 +41,7 @@ const Form = ({setInputValue, setTodos, todos, inputValue}) => {
       a.forEach((index => {
         index.setAttribute("checked","checked")
       }))
-      setTodos(todos.map((item) => {
+      setTodos(todos.map((item: Todos) => {
         return {
           ...item, completed: true, checked: true
         }

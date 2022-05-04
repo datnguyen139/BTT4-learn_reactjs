@@ -1,15 +1,16 @@
 import React from "react";
+import { Todos, TodosFilter } from "./interface";
 
-const Filter = ({setStatus, todos, setTodos}) => {
-  const filterStatus = (e) => {
-    setStatus(e.target.className)
+const Filter = ({setStatus, todos, setTodos}: TodosFilter) => {
+  const filterStatus = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    setStatus(e.currentTarget.className)
   }
 
   const ClearCompleted = () => {
-    let todos2 = todos.filter((todo) => todo.completed === false)
+    let todos2 = todos.filter((todo: Todos) => todo.completed === false)
     setTodos(todos2)
   }
-  const count = todos.filter((todo) => todo.completed === false)
+  const count = todos.filter((todo: Todos) => todo.completed === false)
 
   return (
     <div className="bottom">

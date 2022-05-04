@@ -1,12 +1,12 @@
-import React from "react";
-import Todo from "./Todo.tsx"
+import React, {FC, PropsWithChildren} from "react";
+import Todo from "./Todo";
+import { TodosTodolist, Todos } from './interface';
 
-const Todolist = ({todos, setTodos, filterstatus, setEdit}) => {
+const Todolist = ({todos, setTodos, filterstatus}: TodosTodolist) => {
   return (
   <div className="middle">
-    {filterstatus.map((todo) => (
+    {filterstatus.map((todo: Todos) => (
     <Todo
-      setEdit = {setEdit}
       setTodos = {setTodos}
       todos = {todos}
       todo = {todo}
