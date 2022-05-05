@@ -27,15 +27,29 @@ body {
   text-align: center;
 }
 
-.selectall {
+.select {
   position: relative;
-  top: 1.7rem;
-  left: -17.6rem;
+  top: 2rem;
+  left: -17.5rem;
   margin-top: 5px;
   border: none;
   background-color: white;
-  font-size: 20px;
+  font-size: 23px;
+  opacity: 0.4;
   color: black;
+  cursor: pointer;
+}
+.select.all {
+  position: relative;
+  top: 2rem;
+  left: -17.5rem;
+  margin-top: 5px;
+  border: none;
+  background-color: white;
+  font-size: 23px;
+  opacity: 1;
+  color: black;
+  cursor: pointer;
 }
 
 .container h1 {
@@ -77,6 +91,7 @@ body {
   width: 20px;
   height: 20px;
   text-align: center;
+  cursor: pointer;
 }
 
 .to-do .text {
@@ -106,14 +121,7 @@ body {
   text-align: center;
   color: black;
   font-size: 20px;
-}
-
-.to-do .active {
-  margin-left: 27px;
-  border: none;
-  border-radius: 10px;
-  font-size: 20px;
-  margin-bottom: 1px;
+  cursor: pointer;
 }
 
 .container .bottom {
@@ -121,8 +129,8 @@ body {
 }
 
 span {
-  margin-left: 37px;
-  margin-right: 58px;
+  margin-left: 47px;
+  margin-right: 32px;
 }
 
 ul {
@@ -144,19 +152,27 @@ a {
   color: black;
   text-decoration: none;
   border:#d9d9d9;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
 a:hover {
-  background-color: red;
+  background-color: darkgray;
 }
 
 .clearcompleted {
   font-size: 16px;
   font-family: none;
   padding: 0.4rem;
-  border-radius: 10px;
+  border-radius: 6px;
   margin-left: 33px;
   border: none;
   background-color: #d9d9d9;
+}
+.clearcompleted:hover {
+  background-color: darkgray;
+}
+#pending {
+  background-color: darkcyan;
+  color: whitesmoke;
+  border: 1px solid rgb(0, 0, 0);
 }

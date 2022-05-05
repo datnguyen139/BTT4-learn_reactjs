@@ -1,53 +1,61 @@
-import React from "react";
+import React, { useRef } from "react";
+import { Todos, TodoItem } from "../interface/interface";
 
-const Todo = ({task, todo, todos, setTodos}) => {
-  const EditTask = (e) => {
-    e.target.removeAttribute("readOnly")
+const Todo = ({task, todo, todos, setTodos}: TodoItem) => {
+  const editTask = (e: React.MouseEvent<HTMLInputElement>) => {
+    e.currentTarget.removeAttribute("readOnly")
   }
-  const SaveEdit = (e) => {
-    if(e.key === "Enter"){
-      console.log(e.target.value)
-      setTodos(todos.map((item) => {
-        if(item.id === todo.id){
-          return {
-            ...item, task: e.target.value
+
+  const saveEdit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter"){
+      if(e.currentTarget.value.trim() === "") {
+        alert("please fill in the task")
+        return
+      } else {
+          let newtodos = todos.map((item: Todos) => {
+          if(item.id === todo.id){
+            return {
+              ...item, task: e.currentTarget.value
+            }
           }
-        }
-        return item
-      }))
-      e.target.setAttribute("readOnly","readOnly")
+          return item
+      })
+      setTodos(newtodos)
+      e.currentTarget.setAttribute("readOnly","readOnly")
+    }
   }
 }
 
-  const DeleteTask = () => {
-    setTodos(todos.filter((index) => index.id !== todo.id))
+  const deleteTask = () => {
+    setTodos(todos.filter((index: Todos) => index.id !== todo.id))
   }
 
-  const CompletedTask = (e) => {
-    setTodos(todos.map((item) => {
-      if(item.id === todo.id) {
-        e.target.setAttribute("checked","checked")
+  const completedTask = (e: React.MouseEvent<HTMLInputElement>) => {
+    let newtodos = todos.map((item: Todos) => {
+      if (item.id === todo.id) {
+        e.currentTarget.setAttribute("checked","checked")
         return {
           ...item, completed: !item.completed, checked: !item.checked
         }
       }
-      e.target.removeAttribute("checked")
+      e.currentTarget.removeAttribute("checked")
       return item
-    }))
+    })
+    setTodos(newtodos)
   }
 
   return (
     <div className="to-do">
-      <input type="checkbox" readOnly checked={todo.checked} className="checkbox" onClick={CompletedTask} />
+      <input type="checkbox" readOnly checked={todo.checked} className="checkbox" onClick={completedTask} />
       <input
           type="text"
           className={`text ${todo.completed ? "checked" : ""}`}
           defaultValue={task}
           readOnly
-          onDoubleClick={EditTask}
-          onKeyUp={SaveEdit}
+          onDoubleClick={editTask}
+          onKeyUp={saveEdit}
         />
-      <button className="delete" onClick={DeleteTask}><i className="fa-solid fa-xmark"></i></button>
+      <button className="delete" onClick={deleteTask}><i className="fa-solid fa-xmark"></i></button>
     </div>
   )
 }
