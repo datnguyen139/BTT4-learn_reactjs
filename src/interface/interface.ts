@@ -1,4 +1,3 @@
-import Todolist from './Todolist';
 export interface Todos {
   task: string
   completed: boolean
@@ -19,6 +18,7 @@ export interface TodosTodolist {
 export interface TodosFilter {
   setStatus: Function
   todos: Todos[]
+  status: string
   setTodos: Function
 }
 export interface TodosTodo {

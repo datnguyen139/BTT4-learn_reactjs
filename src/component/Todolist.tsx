@@ -1,17 +1,17 @@
-import React, {FC, PropsWithChildren} from "react";
+import React from "react";
 import Todo from "./Todo";
-import { TodosTodolist, Todos } from './interface';
+import { TodosTodolist, Todos } from "../interface/interface";
 
 const Todolist = ({todos, setTodos, filterstatus}: TodosTodolist) => {
   return (
   <div className="middle">
     {filterstatus.map((todo: Todos) => (
     <Todo
-      setTodos = {setTodos}
-      todos = {todos}
-      todo = {todo}
-      task = {todo.task}
-      key = {todo.id}
+      setTodos={setTodos}
+      todos={todos}
+      todo={todo}
+      task={todo.task}
+      key={todo.id}
     />
     ))}
   </div>

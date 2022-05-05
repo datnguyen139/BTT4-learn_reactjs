@@ -1,31 +1,38 @@
-import React, {FC} from "react";
-import { Todos, TodosTodo } from "./interface";
+import React, { useRef } from "react";
+import { Todos, TodosTodo } from "../interface/interface";
 
 const Todo = ({task, todo, todos, setTodos}: TodosTodo) => {
-  const EditTask = (e: React.MouseEvent<HTMLInputElement>) => {
+  const editTask = (e: React.MouseEvent<HTMLInputElement>) => {
     e.currentTarget.removeAttribute("readOnly")
   }
-  const SaveEdit = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if(e.key === "Enter"){
-      setTodos(todos.map((item: Todos) => {
-        if(item.id === todo.id){
-          return {
-            ...item, task: e.currentTarget.value
+
+  const saveEdit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter"){
+      if(e.currentTarget.value.trim() === "") {
+        alert("please fill in the task")
+        return
+      } else {
+          let newtodos = todos.map((item: Todos) => {
+          if(item.id === todo.id){
+            return {
+              ...item, task: e.currentTarget.value
+            }
           }
-        }
-        return item
-      }))
+          return item
+      })
+      setTodos(newtodos)
       e.currentTarget.setAttribute("readOnly","readOnly")
+    }
   }
 }
 
-  const DeleteTask = () => {
+  const deleteTask = () => {
     setTodos(todos.filter((index: Todos) => index.id !== todo.id))
   }
 
-  const CompletedTask = (e: React.MouseEvent<HTMLInputElement>) => {
-    setTodos(todos.map((item: Todos) => {
-      if(item.id === todo.id) {
+  const completedTask = (e: React.MouseEvent<HTMLInputElement>) => {
+    let newtodos = todos.map((item: Todos) => {
+      if (item.id === todo.id) {
         e.currentTarget.setAttribute("checked","checked")
         return {
           ...item, completed: !item.completed, checked: !item.checked
@@ -33,21 +40,22 @@ const Todo = ({task, todo, todos, setTodos}: TodosTodo) => {
       }
       e.currentTarget.removeAttribute("checked")
       return item
-    }))
+    })
+    setTodos(newtodos)
   }
 
   return (
     <div className="to-do">
-      <input type="checkbox" readOnly checked={todo.checked} className="checkbox" onClick={CompletedTask} />
+      <input type="checkbox" readOnly checked={todo.checked} className="checkbox" onClick={completedTask} />
       <input
           type="text"
           className={`text ${todo.completed ? "checked" : ""}`}
           defaultValue={task}
           readOnly
-          onDoubleClick={EditTask}
-          onKeyUp={SaveEdit}
+          onDoubleClick={editTask}
+          onKeyUp={saveEdit}
         />
-      <button className="delete" onClick={DeleteTask}><i className="fa-solid fa-xmark"></i></button>
+      <button className="delete" onClick={deleteTask}><i className="fa-solid fa-xmark"></i></button>
     </div>
   )
 }
