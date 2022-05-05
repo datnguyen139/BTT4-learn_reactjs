@@ -1,8 +1,8 @@
 import React from "react";
 import Todo from "./Todo";
-import { TodosTodolist, Todos } from "../interface/interface";
+import { TodoList, Todos } from "../interface/interface";
 
-const Todolist = ({todos, setTodos, filterstatus}: TodosTodolist) => {
+const Todolist = ({todos, setTodos, filterstatus}: TodoList) => {
   return (
   <div className="middle">
     {filterstatus.map((todo: Todos) => (

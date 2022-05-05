@@ -43,7 +43,10 @@ const FormSubmit = ({setInputValue, setTodos, todos, inputValue}: TodosForm) => 
 
   return (
     <div className="top">
-      <button onClick={CompletedAll} className={`select ${todos.length? "all" : ""}`}><i className="fa-solid fa-circle-chevron-down"></i></button>
+      <button onClick={CompletedAll}
+            className={`select ${todos.length? "all" : ""}`}>
+            <i className="fa-solid fa-circle-chevron-down"></i>
+      </button>
       <input
             value={inputValue}
             placeholder="What need to be done ?"

@@ -10,7 +10,7 @@ export interface TodosForm {
   todos: Todos[]
   inputValue: string
 }
-export interface TodosTodolist {
+export interface TodoList {
   todos: Todos[]
   setTodos: Function
   filterstatus: Todos[]
@@ -21,7 +21,7 @@ export interface TodosFilter {
   status: string
   setTodos: Function
 }
-export interface TodosTodo {
+export interface TodoItem {
   task: string
   todo: Todos
   todos: Todos[]

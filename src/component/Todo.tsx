@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-import { Todos, TodosTodo } from "../interface/interface";
+import { Todos, TodoItem } from "../interface/interface";
 
-const Todo = ({task, todo, todos, setTodos}: TodosTodo) => {
+const Todo = ({task, todo, todos, setTodos}: TodoItem) => {
   const editTask = (e: React.MouseEvent<HTMLInputElement>) => {
     e.currentTarget.removeAttribute("readOnly")
   }
